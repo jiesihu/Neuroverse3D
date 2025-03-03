@@ -7,7 +7,7 @@ Welcome to the official GitHub repository for **Neuroverse3D**, a In-Context Lea
 This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks and to illustrate the flexibility of its context processing settings.
 
 <div align="center">
-  <img src="neuroverse3D/framework.pdf"/ width="70%"> <br>
+  <iframe src="neuroverse3D/framework.pdf" width="70%" height="500px"></iframe>
 </div>
 
 
