@@ -1,10 +1,15 @@
-# Neuroverse3D: A Universal for Neuroimaging
+# Universal Model for Neuroimaging
 
 [![Paper Link](link-to-your-paper-if-available)](link-to-your-paper-if-available)
 
 Welcome to the official GitHub repository for **Neuroverse3D**, a In-Context Learning (ICL) universal model for neuroimaging in 3D, as presented in our paper "[*Your Paper Title Here*](link-to-your-paper-if-available)".
 
 This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks and to illustrate the flexibility of its context processing settings.
+
+<div align="center">
+  <img src="neuroverse3D/framework.pdf"/ width="70%"> <br>
+</div>
+
 
 ## Introduction
 
@@ -22,7 +27,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
     ```bash
     pip install -r requirements.txt
     ```
-2.  **Download Checkpoint and Demo Data:** Download the pretrained Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [https://drive.google.com/drive/folders/1NrORQxSKB5jl-cvUJ2eATU1FP3EjtSUc?usp=share_link] and place it in the `./checkpoint/` directory. Download the demo images from [https://drive.google.com/drive/folders/1h4x7WtG_GDlckcR4yAI2XZdwnjBOUEt9?usp=share_link] and place it in the `./Demo_data/` directory. 
+2.  **Download Checkpoint and Demo Data:** Download the pretrained Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [GoogleDrive](https://drive.google.com/drive/folders/1NrORQxSKB5jl-cvUJ2eATU1FP3EjtSUc?usp=share_link) and place it in the `./checkpoint/` directory. Download the demo images from [GoogleDrive](https://drive.google.com/drive/folders/1h4x7WtG_GDlckcR4yAI2XZdwnjBOUEt9?usp=share_link) and place it in the `./Demo_data/` directory. 
 3.  **Run the Jupyter Notebook:** Open and run the `Demo.ipynb` notebook using Jupyter or JupyterLab.
 
 ## Citation
