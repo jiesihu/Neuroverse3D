@@ -36,4 +36,4 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
 ## Citation
 
-If you find Neuroverse3D useful in your research, please cite our paper:
+If you find Neuroverse3D useful, please cite our paper.
