@@ -38,7 +38,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
    - **Direct Model Execution:** Alternatively, you can run the model directly using the following Python code:
 
-     ```python
+    ```python
     from neuroverse3D.lightning_model import LightningModel
 
     checkpoint_path = "./checkpoint/neuroverse3D.ckpt" # checkpoint path
@@ -48,13 +48,13 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
     # Assuming target_in, context_in, and context_out are properly loaded tensors.
 
     mask = model.forward(
-     target_in,         # (Batch, 1, H, W, D)
-     context_in,        # (Batch, L, 1, H, W, D)
-     context_out,       # (Batch, L, 1, H, W, D)
-     gs=2,              # Size of mini-context
+    target_in,         # (Batch, 1, H, W, D)
+    context_in,        # (Batch, L, 1, H, W, D)
+    context_out,       # (Batch, L, 1, H, W, D)
+    gs=2,              # Size of mini-context
     )  # -> (Batch, 1, H, W, D)
-    
-     ```
+
+    ```
 
      **Note:** Ensure `target_in`, `context_in`, and `context_out` are correctly loaded PyTorch tensors with the specified dimensions. Replace `"./checkpoint/neuroverse3D.ckpt"` with the actual path to your downloaded checkpoint file.
 ## Citation
