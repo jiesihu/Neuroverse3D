@@ -51,7 +51,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
     )  # -> (Batch, 1, H, W, D)
 
     ```
-    For all inputs ensure that pixel values are min-max normalized to the [0, 1]
+    Ensure all input images are min-max normalized to [0, 1].
 
 ## Citation
 
