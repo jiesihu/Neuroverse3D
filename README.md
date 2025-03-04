@@ -40,18 +40,14 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
     ```python
     from neuroverse3D.lightning_model import LightningModel
-
-    checkpoint_path = "./checkpoint/neuroverse3D.ckpt" # checkpoint path
     model = LightningModel.load_from_checkpoint(checkpoint_path)
 
     # To perform a prediction (L = context size, spatial dimensions: H = W = D = 128)
-    # Assuming target_in, context_in, and context_out are properly loaded tensors.
-
     mask = model.forward(
     target_in,         # (Batch, 1, H, W, D)
     context_in,        # (Batch, L, 1, H, W, D)
     context_out,       # (Batch, L, 1, H, W, D)
-    gs=2,              # Size of mini-context
+    gs=2,              # Mini-Context Size (positive integer). Smaller values reduce memory usage but decelerate processing.
     )  # -> (Batch, 1, H, W, D)
 
     ```
