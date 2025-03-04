@@ -1,8 +1,6 @@
 # Universal Model for Neuroimaging
 
-[![Paper Link](link-to-your-paper-if-available)](link-to-your-paper-if-available)
-
-Welcome to the official GitHub repository for **Neuroverse3D**, a In-Context Learning (ICL) universal model for neuroimaging in 3D, as presented in our paper "[*Your Paper Title Here*](link-to-your-paper-if-available)".
+Welcome to the official GitHub repository for **Neuroverse3D**, a In-Context Learning (ICL) universal model for neuroimaging in 3D.
 
 This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks and to illustrate the flexibility of its context processing settings.
 
