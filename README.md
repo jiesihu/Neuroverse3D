@@ -2,7 +2,7 @@
 
 Welcome to the official GitHub repository for **Neuroverse3D**, a In-Context Learning (ICL) universal model for neuroimaging in 3D.
 
-This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks and to illustrate the flexibility of its context processing settings.
+This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks (e.g. segmentation, denoising, modality transform, bias correction) and to illustrate the flexibility of its context processing settings.
 
 <div align="center">
   <img src="neuroverse3D/framework.png"/ width="55%"> <br>
