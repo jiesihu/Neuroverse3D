@@ -13,7 +13,7 @@ This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neu
 
 As a **universal model**, Neuroverse3D demonstrates robust **cross-center generalization** and proficiency across a wide range of neuroimaging tasks without requiring task-specific retraining. This offers a significant advantage for practical applications in diverse clinical and research settings.
 
-Neuroverse3D is a novel deep learning model designed to address the challenges of applying In-Context Learning to 3D neuroimaging data.  It overcomes the significant memory limitations of traditional ICL models when processing volumetric medical images by introducing the **Adaptive Parallel-Sequential Processing (APSP)** approach and the **U-shape fusion strategy**.
+Neuroverse3D is designed to address the challenges of applying In-Context Learning to 3D medical imaging data.  It overcomes the significant memory limitations of traditional ICL models by introducing the **adaptive parallel-sequential context processing (APSP)** approach.
 
 ## Getting Started
 
