@@ -2,7 +2,7 @@
 
 Welcome to the official GitHub repository for **Neuroverse3D**, a In-Context Learning (ICL) universal model for neuroimaging in 3D.
 
-This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks (e.g. segmentation, denoising, modality transform, bias correction) and to illustrate the flexibility of its context processing settings.
+This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks (e.g. segmentation, denoising, modality transform, bias correction) and to illustrate its flexibility.
 
 <div align="center">
   <img src="neuroverse3D/framework.png"/ width="55%"> <br>
@@ -13,7 +13,7 @@ This repository provides a demonstration notebook (`Demo.ipynb`) to showcase Neu
 
 As a **universal model**, Neuroverse3D demonstrates robust **cross-center generalization** and proficiency across a wide range of neuroimaging tasks without requiring task-specific retraining. This offers a significant advantage for practical applications in diverse clinical and research settings.
 
-Neuroverse3D is designed to address the challenges of applying In-Context Learning to 3D medical imaging data.  It overcomes the significant memory limitations of traditional ICL models by introducing the **adaptive parallel-sequential context processing (APSP)** approach.
+Neuroverse3D is designed to address the challenge of applying In-Context Learning to 3D medical images.  It overcomes the significant memory limitations of ICL models by introducing the **adaptive parallel-sequential context processing (APSP)** approach.
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
 **Running the Demo:**
 
-1.  **Environment Setup:** Ensure you have Python and PyTorch installed, along with the required libraries listed in `requirements.txt` (if applicable). You can install dependencies using pip:
+1.  **Environment Setup:** Ensure you have Python and PyTorch installed, along with the required libraries listed in `requirements.txt`. You can install dependencies using pip:
     ```bash
     pip install -r requirements.txt
     ```
