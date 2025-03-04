@@ -44,15 +44,14 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
     # To perform a prediction (L = context size, spatial dimensions: H = W = D = 128)
     mask = model.forward(
-    target_in,         # (Batch, 1, H, W, D)
-    context_in,        # (Batch, L, 1, H, W, D)
-    context_out,       # (Batch, L, 1, H, W, D)
+    target_in,         # torch tensor (Batch, 1, H, W, D)
+    context_in,        # torch tensor (Batch, L, 1, H, W, D)
+    context_out,       # torch tensor (Batch, L, 1, H, W, D)
     gs=2,              # Mini-Context Size (positive integer). Smaller values reduce memory usage but decelerate processing.
     )  # -> (Batch, 1, H, W, D)
 
     ```
 
-     **Note:** Ensure `target_in`, `context_in`, and `context_out` are correctly loaded PyTorch tensors with the specified dimensions. Replace `"./checkpoint/neuroverse3D.ckpt"` with the actual path to your downloaded checkpoint file.
 ## Citation
 
 If you find Neuroverse3D useful, please cite our paper.
