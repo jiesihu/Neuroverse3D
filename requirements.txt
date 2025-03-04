@@ -1,0 +1,11 @@
+pytorch-lightning==2.2.3
+torch
+torchvision
+pydantic
+einops
+kornia
+scipy
+numpy
+nibabel
+matplotlib
+tabulate

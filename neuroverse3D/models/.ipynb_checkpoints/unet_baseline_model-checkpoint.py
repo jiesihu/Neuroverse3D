@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from pydantic import validate_arguments
 from .nn.vmap import Vmap, vmap
 import torch
 import torch.nn as nn
