@@ -21,11 +21,17 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
 **Running the Demo:**
 
-1.  **Environment Setup:** Ensure you have Python and PyTorch installed, along with the required libraries listed in `requirements.txt`. You can install dependencies using pip:
+1. **Environment Setup:** Ensure you have Python and PyTorch installed, along with the required libraries listed in `requirements.txt`. You can install dependencies using pip:
     ```bash
     pip install -r requirements.txt
     ```
-2.  **Download Checkpoint and Demo Data:** Download the pretrained Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [GoogleDrive](https://drive.google.com/drive/folders/1NrORQxSKB5jl-cvUJ2eATU1FP3EjtSUc?usp=share_link) and place it in the `./checkpoint/` directory. Download the demo images from [GoogleDrive](https://drive.google.com/drive/folders/1h4x7WtG_GDlckcR4yAI2XZdwnjBOUEt9?usp=share_link) and place it in the `./Demo_data/` directory. 
+    Alternatively, you can directly download and use our provided [Docker image](www.ggd) to run the model.
+    
+2. **Download Checkpoint and Demo Images:**
+
+   - **Pretrained Checkpoint:** Download the Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [Google Drive](https://drive.google.com/drive/folders/1NrORQxSKB5jl-cvUJ2eATU1FP3EjtSUc?usp=share_link) and place it in the `./checkpoint/` directory.
+   - **Demo Images:** Download the demo images from [Google Drive](https://drive.google.com/drive/folders/1h4x7WtG_GDlckcR4yAI2XZdwnjBOUEt9?usp=share_link) and place them in the `./Demo_data/` directory.
+
 3.  **Run the Jupyter Notebook:** Open and run the `Demo.ipynb` notebook using Jupyter or JupyterLab.
 
 ## Citation
