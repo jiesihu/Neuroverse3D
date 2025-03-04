@@ -32,8 +32,35 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
    - **Pretrained Checkpoint:** Download the Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [Google Drive](https://drive.google.com/drive/folders/1NrORQxSKB5jl-cvUJ2eATU1FP3EjtSUc?usp=share_link) and place it in the `./checkpoint/` directory.
    - **Demo Images:** Download the demo images from [Google Drive](https://drive.google.com/drive/folders/1h4x7WtG_GDlckcR4yAI2XZdwnjBOUEt9?usp=share_link) and place them in the `./Demo_data/` directory.
 
-3.  **Run the Jupyter Notebook:** Open and run the `Demo.ipynb` notebook using Jupyter or JupyterLab.
+3. **Run the Model:**
 
+   - **Jupyter Notebook:** Open and execute the `Demo.ipynb` notebook using Jupyter or JupyterLab for an interactive demonstration.
+
+   - **Direct Model Execution:** Alternatively, you can run the model directly using the following Python code:
+
+     ```python
+    from neuroverse3D.lightning_model import LightningModel
+
+    checkpoint_path = "./checkpoint/neuroverse3D.ckpt" # checkpoint path
+    model = LightningModel.load_from_checkpoint(checkpoint_path)
+
+    # To perform a prediction (L = context size, spatial dimensions: H = W = D = 128)
+    # Assuming target_in, context_in, and context_out are properly loaded tensors.
+
+    mask = model.forward(
+     target_in,         # (Batch, 1, H, W, D)
+     context_in,        # (Batch, L, 1, H, W, D)
+     context_out,       # (Batch, L, 1, H, W, D)
+     gs=2,              # Size of mini-context
+    )  # -> (Batch, 1, H, W, D)
+    
+     ```
+
+     **Note:** Ensure `target_in`, `context_in`, and `context_out` are correctly loaded PyTorch tensors with the specified dimensions. Replace `"./checkpoint/neuroverse3D.ckpt"` with the actual path to your downloaded checkpoint file.
 ## Citation
 
 If you find Neuroverse3D useful, please cite our paper.
+
+## Acknowledgements
+This repository benefits from the excellent work provided by [UniverSeg](https://github.com/JJGO/UniverSeg/tree/main) and [Neuralizer](https://github.com/SteffenCzolbe/neuralizer). We extend our gratitude for their significant contributions to the field.
+
