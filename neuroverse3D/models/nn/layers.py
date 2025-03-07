@@ -111,7 +111,6 @@ class ConvBlock_context_c2t(DefaultUnetStageBlock):
         Returns:
             context, target: the processed tensors, same shape as input.
         """
-#         print('--'*10,'Decoder pairwise block','--'*10)
         # do single convs on input
         context = self.context_conv(context)  # B,L,C,...     
 
@@ -200,7 +199,6 @@ class PairwiseConvAvgModelBlock_c2t(DefaultUnetStageBlock):
         Returns:
             context, target: the processed tensors, same shape as input.
         """
-#         print('--'*10,'Decoder pairwise block','--'*10)
         # do single convs on input
         target = self.target_conv(target)  # B,C,...
             
@@ -343,12 +341,7 @@ class UnetUpsampleAndConcatShortcutBlock(nn.Module):
 
         # concat with shortcut
         ctx_short, tgt_short = shortcut
-#         if self.context_filled: 
-#             print('ctx_short:',ctx_short.shape)
-#             print('context:',context.shape)
-#         if self.target_filled: 
-#             print('tgt_short:',tgt_short.shape)
-#             print('target:',target.shape)
+        
         # B L C ...
         context = torch.cat([context, ctx_short],
                             dim=2) if self.context_filled else context
