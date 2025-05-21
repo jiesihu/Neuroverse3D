@@ -25,7 +25,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
     ```bash
     pip install -r requirements.txt
     ```
-    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1BqNqEmyuwclsJvZ6M-zGnyxlLT4KDZZ-/view?usp=share_link) to run the model.
+    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link) to run the model.
     
 2. **Download Checkpoint and Demo Images:**
 
