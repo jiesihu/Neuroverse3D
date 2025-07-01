@@ -61,15 +61,17 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
     ```python
     from neuroverse3D.lightning_model import LightningModel
+    import torch
     model = LightningModel.load_from_checkpoint(checkpoint_path)
 
     # To perform a prediction (L = context size, spatial dimensions: H = W = D = 128)
-    mask = model.forward(
-    target_in,         # torch tensor (Batch, 1, H, W, D)
-    context_in,        # torch tensor (Batch, L, 1, H, W, D)
-    context_out,       # torch tensor (Batch, L, 1, H, W, D)
-    gs=2,              # Mini-Context Size (positive integer). Smaller values reduce memory usage but decelerate processing.
-    )  # -> (Batch, 1, H, W, D)
+    with torch.no_grad():
+        mask = model.forward(
+            target_in,         # torch tensor (Batch, 1, H, W, D)
+            context_in,        # torch tensor (Batch, L, 1, H, W, D)
+            context_out,       # torch tensor (Batch, L, 1, H, W, D)
+            gs=2,              # Mini-Context Size (positive integer). Smaller values reduce memory usage but decelerate processing.
+            )  # -> (Batch, 1, H, W, D)
 
     ```
     Ensure all input images are min-max normalized to [0, 1].
