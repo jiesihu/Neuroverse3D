@@ -1,4 +1,4 @@
-# 🧠 Neuroverse3D: 
+# 🧠 Neuroverse3D
 
 ### A Universal Model for 3D Medical Imaging
 
@@ -10,7 +10,7 @@ Welcome to the official repository of **[Neuroverse3D](https://arxiv.org/pdf/250
 
 ## What Can Neuroverse3D Do?
 
-Neuroverse3D is trained on neuroimaging data and can perform a wide range of neuroimaging tasks including:
+Neuroverse3D is trained on neuroimaging data and can perform a wide range of neuroimaging tasks without retraining including:
 
 - 🔍 **Arbitrary segmentation**
 - 🔁 **Image Transformation**
