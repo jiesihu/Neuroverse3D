@@ -1,12 +1,14 @@
-# 🧠 Neuroverse3D: A Universal Model for 3D Medical Imaging
+# 🧠 Neuroverse3D: 
 
-Welcome to the official repository of **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)** — a universal In-Context Learning (ICL) model designed for diverse **3D medical imaging** tasks.  
+### A Universal Model for 3D Medical Imaging
+
+Welcome to the official repository of **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)** — a universal In-Context Learning (ICL) model designed for diverse **3D** medical imaging tasks.  
 
 🎉 **Our paper has been accepted to ICCV 2025!** 🎉
 
 ---
 
-## 🚀 What Can Neuroverse3D Do?
+## What Can Neuroverse3D Do?
 
 Neuroverse3D is trained on neuroimaging data and can perform a wide range of neuroimaging tasks including:
 
@@ -28,7 +30,6 @@ This repository provides a tutorial (`Demo.ipynb`) to showcase Neuroverse3D's ca
   <img src="neuroverse3D/framework.png"/ width="55%"> <br>
 </div> -->
 
----
 ## Introduction
 
 As a **universal model**, Neuroverse3D demonstrates robust **cross-center generalization** and proficiency across a wide range of neuroimaging tasks without requiring task-specific retraining. This offers a significant advantage for practical applications in diverse clinical and research settings.
@@ -75,7 +76,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
 ## Citation
 
-If you find Neuroverse3D useful, please cite our paper.
+If you find Neuroverse3D useful, please cite our paper **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**.
 
 ## Acknowledgements
 This repository benefits from the excellent work provided by [UniverSeg](https://github.com/JJGO/UniverSeg/tree/main) and [Neuralizer](https://github.com/SteffenCzolbe/neuralizer). We extend our gratitude for their significant contributions to the field.
