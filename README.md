@@ -1,14 +1,34 @@
-# Universal Model for Neuroimaging
+# 🧠 Neuroverse3D: A Universal Model for 3D Medical Imaging
 
-Welcome to the official GitHub repository for **Neuroverse3D**, a In-Context Learning (ICL) universal model for neuroimaging in 3D.
+Welcome to the official repository of **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)** — a universal In-Context Learning (ICL) model designed for diverse **3D medical imaging** tasks.  
 
-This repository provides a tutorial (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks (e.g. segmentation, denoising, modality transform, bias correction) and to illustrate its flexibility.
+🎉 **Our paper has been accepted to ICCV 2025!** 🎉
+
+---
+
+## 🚀 What Can Neuroverse3D Do?
+
+Neuroverse3D is trained on neuroimaging data and can perform a wide range of neuroimaging tasks including:
+
+- 🔍 **Arbitrary segmentation**
+- 🔁 **Image Transformation**
+- 🌅 **Image Enhancement**
 
 <div align="center">
-  <img src="neuroverse3D/framework.png"/ width="55%"> <br>
+  <img src="neuroverse3D/comparison.png" width="85%"> <br>
 </div>
 
+> ⚠️ *Note: While trained on brain images, the model demonstrates some ability on other organs (e.g., abdomen), though the performance is limited and not yet reliable.*
 
+---
+## 📘 Quick Start
+This repository provides a tutorial (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks and to illustrate its flexibility. 
+
+<!-- <div align="center">
+  <img src="neuroverse3D/framework.png"/ width="55%"> <br>
+</div> -->
+
+---
 ## Introduction
 
 As a **universal model**, Neuroverse3D demonstrates robust **cross-center generalization** and proficiency across a wide range of neuroimaging tasks without requiring task-specific retraining. This offers a significant advantage for practical applications in diverse clinical and research settings.
