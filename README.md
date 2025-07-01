@@ -17,7 +17,7 @@ Neuroverse3D is trained on neuroimaging data and can perform a wide range of neu
 - 🌅 **Image Enhancement**
 
 <div align="center">
-  <img src="neuroverse3D/comparison.png" width="85%"> <br>
+  <img src="neuroverse3D/comparison.png" width="95%"> <br>
 </div>
 
 > ⚠️ *Note: While trained on brain images, the model demonstrates some ability on other organs (e.g., abdomen), though the performance is limited and not yet reliable.*
@@ -46,7 +46,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
     ```bash
     pip install -r requirements.txt
     ```
-    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link) to run the model.
+    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which has all the necessary runtime environments.
     
 2. **Download Checkpoint and Demo Images:**
 
