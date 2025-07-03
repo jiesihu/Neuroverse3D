@@ -6,6 +6,7 @@ Welcome to the official repository of **[Neuroverse3D](https://arxiv.org/pdf/250
 
 🎉 **Our paper has been accepted to ICCV 2025!** 🎉
 
+
 ---
 
 ## What Can Neuroverse3D Do?
