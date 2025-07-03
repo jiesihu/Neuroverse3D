@@ -15,6 +15,8 @@ Neuroverse3D is trained on neuroimaging data and can perform a wide range of neu
 - 🔍 **Arbitrary segmentation**
 - 🔁 **Image Transformation**
 - 🌅 **Image Enhancement**
+  
+Just need a few image-label pairs as context!
 
 <div align="center">
   <img src="neuroverse3D/example.png" width="95%"> <br>
