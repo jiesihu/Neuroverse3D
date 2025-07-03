@@ -55,8 +55,55 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 
 3. **Run the Model:**
 
-   - **Jupyter Notebook:** Open and execute the `Demo.ipynb` notebook using Jupyter or JupyterLab for an interactive demonstration.
+   
+   - **Run Model with Inference.py:** You can run the model directly using:  
+       This `Inference.py` script allows you to directly run Neuroverse3D on a given 3D medical imaging path.  
+       By default, this script assumes your data is organized in a format similar to [nnUNet](https://github.com/MIC-DKFZ/nnUNet),  
+       i.e., structured as follows:
 
+       ```text
+       nnUNet_raw/Dataset001_BrainTumour/
+        ├── imagesTr
+        │   ├── BRATS_001_0000.nii.gz
+        │   ├── BRATS_001_0001.nii.gz
+        │   ├── BRATS_001_0002.nii.gz
+        │   ├── BRATS_001_0003.nii.gz
+        │   ├── BRATS_002_0000.nii.gz
+        │   ├── BRATS_002_0001.nii.gz
+        │   ├── BRATS_002_0002.nii.gz
+        │   ├── BRATS_002_0003.nii.gz
+        │   ├── ...
+        └── labelsTr
+            ├── BRATS_001.nii.gz
+            ├── BRATS_002.nii.gz
+            ├── ...
+        ```
+
+       Below are two usage examples:
+
+       ```sh
+       # For Segmentation Tasks
+       python Inference.py --checkpoint_path ./checkpoint/neuroverse3D.ckpt \
+                    --context_imgs Demo_data/seg/imgs \                 # Folder path for context images
+                    --context_imgs_modality 0000 \                     # Modality for context images
+                    --context_labs Demo_data/seg/labs \                # Folder path for context segmentation masks
+                    --target_imgs Demo_data/seg/imgs \                 # Folder path for target images
+                    --target_modality 0000 \                           # Modality for target images
+                    --target_output_path Demo_data/seg/preds \         # Folder to save predictions
+                    --task Seg                                         # Task type
+
+       # For Generation Tasks            
+       python Inference.py --checkpoint_path ./checkpoint/neuroverse3D.ckpt \
+                    --context_imgs Demo_data/mod_trans/imgs \          # Folder path for context images
+                    --context_imgs_modality 0000 \                     # Modality for context images
+                    --context_labs Demo_data/mod_trans/imgs \          # Folder path for context labels
+                    --context_labs_modality 0001 \                     # Modality for context labels
+                    --target_imgs Demo_data/mod_trans/imgs \           # Folder path for target images
+                    --target_modality 0000 \                           # Modality for target images
+                    --target_output_path Demo_data/mod_trans/preds \   # Folder to save predictions
+                    --task Gen                                         # Task type
+        ```
+   - **Jupyter Notebook:** Open and execute the `Demo.ipynb` notebook using Jupyter or JupyterLab for an interactive demonstration.
    - **Direct Model Execution:** Alternatively, you can run the model directly using the following Python code:
 
     ```python
