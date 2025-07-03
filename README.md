@@ -17,7 +17,7 @@ Neuroverse3D is trained on neuroimaging data and can perform a wide range of neu
 - 🌅 **Image Enhancement**
 
 <div align="center">
-  <img src="neuroverse3D/comparison.png" width="95%"> <br>
+  <img src="neuroverse3D/example.png" width="95%"> <br>
 </div>
 
 > ⚠️ *Note: While trained on brain images, the model demonstrates some ability on other organs (e.g., abdomen), though the performance is limited and not yet reliable.*
@@ -56,7 +56,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 3. **Run the Model:**
 
    
-   - **Run Model with Inference.py:** You can run the model directly using:  
+   - **Run Model with Inference.py:** 
        This `Inference.py` script allows you to directly run Neuroverse3D on a given 3D medical imaging path.  
        By default, this script assumes your data is organized in a format similar to [nnUNet](https://github.com/MIC-DKFZ/nnUNet),  
        i.e., structured as follows:
@@ -79,7 +79,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
             ├── ...
         ```
 
-       Below are two usage examples:
+       Below are two usage examples with the provided Demo data:
 
        ```sh
        # For Segmentation Tasks
