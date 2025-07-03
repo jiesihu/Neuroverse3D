@@ -41,7 +41,7 @@ Neuroverse3D is designed to address the challenge of applying In-Context Learnin
 
 ## Getting Started
 
-Follow the steps below to run the notebook and explore the model's performance on different tasks.
+Follow the steps below to explore the model.
 
 **Running the Demo:**
 
@@ -111,21 +111,21 @@ Follow the steps below to run the notebook and explore the model's performance o
        Alternatively, you can run the model directly using the following Python code:  
        Ensure all input images are min-max normalized to [0, 1].
 
-    ```python
-    from neuroverse3D.lightning_model import LightningModel
-    import torch
-    model = LightningModel.load_from_checkpoint(checkpoint_path)
+        ```python
+        from neuroverse3D.lightning_model import LightningModel
+        import torch
+        model = LightningModel.load_from_checkpoint(checkpoint_path)
 
-    # To perform a prediction (L = context size, spatial dimensions: H = W = D = 128)
-    with torch.no_grad():
-        mask = model.forward(
-            target_in,         # torch tensor (Batch, 1, H, W, D)
-            context_in,        # torch tensor (Batch, L, 1, H, W, D)
-            context_out,       # torch tensor (Batch, L, 1, H, W, D)
-            gs=2,              # Mini-Context Size (positive integer). Smaller values reduce memory usage but decelerate processing.
-            )  # -> (Batch, 1, H, W, D)
+        # To perform a prediction (L = context size, spatial dimensions: H = W = D = 128)
+        with torch.no_grad():
+            mask = model.forward(
+                target_in,         # torch tensor (Batch, 1, H, W, D)
+                context_in,        # torch tensor (Batch, L, 1, H, W, D)
+                context_out,       # torch tensor (Batch, L, 1, H, W, D)
+                gs=2,              # Mini-Context Size (positive integer). Smaller values reduce memory usage but decelerate processing.
+                )  # -> (Batch, 1, H, W, D)
 
-    ```
+        ```
     
 
 ## Citation
