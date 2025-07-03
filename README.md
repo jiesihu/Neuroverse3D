@@ -41,7 +41,7 @@ Neuroverse3D is designed to address the challenge of applying In-Context Learnin
 
 ## Getting Started
 
-The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's capabilities.  Follow the steps below to run the notebook and explore the model's performance on different tasks.
+Follow the steps below to run the notebook and explore the model's performance on different tasks.
 
 **Running the Demo:**
 
@@ -59,13 +59,13 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
 3. **Run the Model:**
 
    
-   - **Run Model with Inference.py:** 
+   - **Run Model with Inference.py:**    
        This `Inference.py` script allows you to directly run Neuroverse3D on a given 3D medical imaging path.  
        By default, this script assumes your data is organized in a format similar to [nnUNet](https://github.com/MIC-DKFZ/nnUNet),  
        i.e., structured as follows:
 
        ```text
-       nnUNet_raw/Dataset001_BrainTumour/
+       Dataset001_BrainTumour/
         ├── imagesTr
         │   ├── BRATS_001_0000.nii.gz
         │   ├── BRATS_001_0001.nii.gz
@@ -106,8 +106,10 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
                     --target_output_path Demo_data/mod_trans/preds \   # Folder to save predictions
                     --task Gen                                         # Task type
         ```
-   - **Jupyter Notebook:** Open and execute the `Demo.ipynb` notebook using Jupyter or JupyterLab for an interactive demonstration.
-   - **Direct Model Execution:** Alternatively, you can run the model directly using the following Python code:
+   - **Jupyter Notebook:** The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's capabilities. 
+   - **Direct Model Execution:**   
+       Alternatively, you can run the model directly using the following Python code:  
+       Ensure all input images are min-max normalized to [0, 1].
 
     ```python
     from neuroverse3D.lightning_model import LightningModel
@@ -124,7 +126,7 @@ The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's cap
             )  # -> (Batch, 1, H, W, D)
 
     ```
-    Ensure all input images are min-max normalized to [0, 1].
+    
 
 ## Citation
 
