@@ -22,7 +22,7 @@ Follow the steps below to explore the model.
     ```
     Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which has all the necessary runtime environments.
 
-2. **Training (Optional)**
+### 2. **Training (Optional)**
 
 If you wish to train the model from scratch, follow the steps below. To use our pre-trained model, you can skip to the next section.
 
@@ -59,7 +59,7 @@ python train.py --train_gpus '(0)' \
                 --random_context_size True \
                 --max_epochs 100
 ```
-3. Inference
+### 3. Inference
 
 To run inference with the pre-trained model, first download the necessary files.
 
