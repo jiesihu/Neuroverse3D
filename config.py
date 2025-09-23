@@ -1,0 +1,137 @@
+# config.py
+
+import argparse
+def parse_tuple(string):
+    try:
+        return tuple(map(int, string.strip('()').split(',')))
+    except ValueError as e:
+        raise argparse.ArgumentTypeError(f"Invalid tuple format: {string}. Expected format: (x,y,z).")
+
+
+def get_parser():
+    parser = argparse.ArgumentParser(description="Hyperparameters for deep learning training")
+    
+    # load model
+    parser.add_argument('--model_name', type=str, default='neuralizer', help="model")
+    
+    # args for training and evaluation
+    parser.add_argument('--learning_rate', type=float, default=0.001, help='Learning rate for the optimizer')
+    parser.add_argument('--lr', type=float, default=0.0001)
+    parser.add_argument('--lr_decline_patience', type=int, default=10)
+    parser.add_argument('--nb_inner_channels', nargs='+', type=int, default=[32, 64, 128, 256, 512])
+    parser.add_argument('--precision', type=int, default=32)
+    parser.add_argument('--gradient_clip_val', type=float, default=0.25)
+    parser.add_argument('--ell', type=int, default=3, help='Mini-context size.')
+    parser.add_argument('--max_epochs', type=int, default=1000)
+    parser.add_argument('--num_warmup_steps', type=int, default=100)
+    
+    # data augmentation 
+    parser.add_argument('--flip_prob', type=float, default=0.05, help='Prob. of fliping the seg mask.')
+    parser.add_argument('--sobel_prob', type=float, default=0.05, help='Prob. of apply edge detection to the seg mask.')
+    parser.add_argument('--gin_prob', type=float, default=0.05, help = 'Prob. of apply GIN augmentation to the images.')
+    parser.add_argument('--train_aug', type=int, default=1)
+    
+    
+    # dataloader
+    parser.add_argument('--batch_size', type=int, default=1, help='Batch size for training')
+    parser.add_argument('--context_size', type=int, default=3, help='Context size for training')
+    parser.add_argument('--workers', type=int, default=8, help='Workers of dataloaders.')
+    parser.add_argument('--data_dir', type=str, default='/mnt/hujiesi/Brain_ICL_2mm/', help='...')
+    parser.add_argument('--skip_resize', type=bool, default=False, help='Skip the resizing of data')
+    parser.add_argument('--random_context_size', type=bool, default=False, help='Use random context size')
+    parser.add_argument('--train_or_val_split_rate', type=float, default=0.1, help='...')
+    
+    # load
+    parser.add_argument('--checkpoint_path', type=str, default=None, help='Path to the checkpoint')
+    parser.add_argument('--checkpoint_index', type=int, default=-1, help='Index of checkpoint. (If you have multiples checkpoints.)')
+    
+    # Devices
+    parser.add_argument('--device', type=str, default="cuda:0", help='Device')
+    parser.add_argument('--train_gpus', type=parse_tuple, default='(1,4,6,7)')
+    
+    # Other hparameters (might not be used)
+    parser.add_argument('--accelerator', type=str, default='gpu')
+    parser.add_argument('--accumulate_grad_batches', type=int, default=8)
+    parser.add_argument('--amp_backend', type=str, default='native')
+    parser.add_argument('--auto_lr_find', type=bool, default=False)
+    parser.add_argument('--auto_scale_batch_size', type=bool, default=False)
+    parser.add_argument('--auto_select_gpus', type=bool, default=False)
+    parser.add_argument('--check_val_every_n_epoch', type=int, default=1)
+    parser.add_argument('--checkpoint_callback', default=None)
+    parser.add_argument('--default_root_dir', default=None)
+    parser.add_argument('--detect_anomaly', type=bool, default=False)
+    parser.add_argument('--deterministic', default=None)
+    parser.add_argument('--devices', default='auto')
+    parser.add_argument('--enable_checkpointing', type=bool, default=True)
+    parser.add_argument('--enable_model_summary', type=bool, default=True)
+    parser.add_argument('--enable_progress_bar', type=bool, default=False)
+    parser.add_argument('--fast_dev_run', type=bool, default=False)
+    parser.add_argument('--gpus', default=None)
+    parser.add_argument('--gradient_clip_algorithm', default=None)
+    parser.add_argument('--ipus', default=None)
+    parser.add_argument('--limit_predict_batches', default=None)
+    parser.add_argument('--limit_test_batches', default=None)
+    parser.add_argument('--limit_train_batches', default=None)
+    parser.add_argument('--limit_val_batches', default=None)
+    parser.add_argument('--log_every_n_steps', type=int, default=500)
+    parser.add_argument('--logger', type=bool, default=True)
+    
+    parser.add_argument('--max_steps', type=int, default=-1)
+    parser.add_argument('--max_time', default=None)
+    parser.add_argument('--min_epochs', default=None)
+    parser.add_argument('--min_steps', default=None)
+    parser.add_argument('--num_nodes', type=int, default=1)
+    parser.add_argument('--num_processes', default=None)
+    parser.add_argument('--num_sanity_val_steps', type=int, default=2)
+    parser.add_argument('--overfit_batches', type=float, default=0.0)
+    parser.add_argument('--plugins', default=None)
+    parser.add_argument('--process_position', type=int, default=0)
+    parser.add_argument('--profiler', default=None)
+    parser.add_argument('--reload_dataloaders_every_n_epochs', type=int, default=0)
+    parser.add_argument('--replace_sampler_ddp', type=bool, default=True)
+    parser.add_argument('--resume_from_checkpoint', default=None)
+    parser.add_argument('--stochastic_weight_avg', type=bool, default=False)
+    parser.add_argument('--strategy', default=None)
+    parser.add_argument('--sync_batchnorm', type=bool, default=False)
+    parser.add_argument('--terminate_on_nan', default=None)
+    parser.add_argument('--tpu_cores', default=None)
+    parser.add_argument('--track_grad_norm', type=int, default=-1)
+    parser.add_argument('--val_check_interval', default=None)
+    parser.add_argument('--weights_save_path', default=None)
+    parser.add_argument('--weights_summary', default='top')
+    parser.add_argument('--accumulate_grad_batches_rampup_epochs', type=int, default=0)
+    parser.add_argument('--context_informed_uncertainty_ok', type=int, default=1)
+    parser.add_argument('--data_downsample_factor', type=int, default=1)
+    parser.add_argument('--data_num_workers', type=int, default=16)
+    parser.add_argument('--data_slice_only', type=bool, default=False)
+    parser.add_argument('--early_stop_patience', type=int, default=0)
+    parser.add_argument('--flush_logs_every_n_steps', default=None)
+    parser.add_argument('--init_weights_from', default=None)
+    parser.add_argument('--lam', type=float, default=0.1)
+    parser.add_argument('--log_gpu_memory', default=None)
+    parser.add_argument('--max_context_size', type=int, default=32)
+    parser.add_argument('--min_context_size', type=int, default=1)
+    parser.add_argument('--model', default='pairwise_conv_avg_model')
+    parser.add_argument('--move_metrics_to_cpu', type=bool, default=False)
+    parser.add_argument('--multiple_trainloader_mode', default='max_size_cycle')
+    parser.add_argument('--nb_conv_layers_per_stage', type=int, default=2)
+    parser.add_argument('--nb_levels', type=int, default=4)
+    parser.add_argument('--noeval', type=bool, default=False)
+    parser.add_argument('--not_trained_datasets', default=None)
+    parser.add_argument('--not_trained_modalities', default=None)
+    parser.add_argument('--not_trained_seg_classes', default=None)
+    parser.add_argument('--not_trained_tasks', default=None)
+    parser.add_argument('--only_dataset', default=None)
+    parser.add_argument('--only_modality', default=None)
+    parser.add_argument('--only_seg_classes', default=None)
+    parser.add_argument('--only_task', default=None)
+    parser.add_argument('--progress_bar_refresh_rate', default=None)
+    parser.add_argument('--resume', default=None)
+    parser.add_argument('--sample_every_n_hours', type=int, default=6)
+    parser.add_argument('--spatial_augmentation_mode', default='context_aligned')
+    parser.add_argument('--tags', nargs='+', default=['all_data'])
+    parser.add_argument('--train_unique_query_cnt', type=int, default=-1)
+    parser.add_argument('--train_unique_query_seed', default=None)
+    parser.add_argument('--weight_decay', type=float, default=0)
+
+    return parser
