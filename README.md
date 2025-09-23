@@ -1,65 +1,77 @@
-# 🧠 Neuroverse3D
+# In-Context Learning (ICL) for 3D Medical Imaging
+[![Paper](https://img.shields.io/badge/arxiv-2503.02410-b31b1b.svg)](https://arxiv.org/pdf/2503.02410v1)
 
-### A Universal Model for 3D Medical Imaging
+This repository aims to advance the development of universal, In-Context Learning (ICL) based models for 3D medical imaging. The core of this project is **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**, a versatile model capable of performing a wide range of tasks such as segmentation, denoising, and image transformation without task-specific retraining.
 
-Welcome to the official repository of **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)** — a universal In-Context Learning (ICL) model designed for diverse **3D** medical imaging tasks.  
+For a brief overview of the model's capabilities, please see the [introduction](neuroverse3D/intro.md).
 
-🎉 **Our paper has been accepted to ICCV 2025!** 🎉
+## Features
 
+* **Memory-Efficient ICL Model:** An ICL model specifically designed for 3D medical imaging that supports large context sizes without linear growth in memory consumption.
+* **Pre-trained Checkpoint & Demo:** Includes a pre-trained checkpoint for Neuroverse3D on neuroimaging data and a hands-on Jupyter Notebook (`Demo.ipynb`) to showcase its capabilities.
+* **Complete Training Pipeline:** Provides the full source code for training the ICL segmentation model, along with a synthetic dataset generated via SynthICL, enabling researcher to train a capable 3D medical ICL model from scratch.
 
----
-
-## What Can Neuroverse3D Do?
-
-Neuroverse3D is trained on neuroimaging data and can perform a wide range of neuroimaging tasks without retraining including:
-
-- 🔍 **Arbitrary segmentation**
-- 🔁 **Image Transformation**
-- 🌅 **Image Enhancement**
-  
-Just need a few image-label pairs as context!
-
-<div align="center">
-  <img src="neuroverse3D/example.png" width="95%"> <br>
-</div>
-
-> ⚠️ *Note: While trained on brain images, the model demonstrates some ability on other organs (e.g., abdomen), though the performance is limited and not yet reliable.*
-
----
-## 📘 Quick Start
-This repository provides a tutorial (`Demo.ipynb`) to showcase Neuroverse3D's capabilities across various neuroimaging tasks and to illustrate its flexibility. 
-
-<!-- <div align="center">
-  <img src="neuroverse3D/framework.png"/ width="55%"> <br>
-</div> -->
-
-## Introduction
-
-As a **universal model**, Neuroverse3D demonstrates robust **cross-center generalization** and proficiency across a wide range of neuroimaging tasks without requiring task-specific retraining. This offers a significant advantage for practical applications in diverse clinical and research settings.
-
-Neuroverse3D is designed to address the challenge of applying In-Context Learning to 3D medical images.  It overcomes the significant memory limitations of ICL models by introducing the **adaptive parallel-sequential context processing** approach.
 
 ## Getting Started
 
 Follow the steps below to explore the model.
-
-**Running the Demo:**
 
 1. **Environment Setup:** Ensure you have Python and PyTorch installed, along with the required libraries listed in `requirements.txt`. You can install dependencies using pip:
     ```bash
     pip install -r requirements.txt
     ```
     Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which has all the necessary runtime environments.
-    
-2. **Download Checkpoint and Demo Images:**
 
-   - **Pretrained Checkpoint:** Download the Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [Google Drive](https://drive.google.com/file/d/1ER_mV2CCsdnF-q3Aoy7loJ2DZXI95M9M/view?usp=drive_link) and place it in the `./checkpoint/` directory.
-   - **Demo Images:** Download the demo images from [Google Drive](https://drive.google.com/file/d/1H7sq-KeK39OfILdoY7MALO6sQqrgaVwf/view?usp=drive_link) and place them in the `./Demo_data/` directory.
+2. **Training (Optional)**
 
-3. **Run the Model:**
+If you wish to train the model from scratch, follow the steps below. To use our pre-trained model, you can skip to the next section.
+
+First, download the provided synthetic dataset:
+**Link**: [Baidu Netdisk](https://pan.baidu.com/s/1GNowsAfZE2vVIo1tW4O6vQ) (Access Code: `rue4`)  
+*Note: This dataset is currently hosted on Baidu Netdisk. We are exploring alternative hosting options for easier access.*
+
+Then, run the two-stage training process:
+```bash
+# Stage 1: Initial training with a fixed context size
+python train.py --train_gpus '(0)' \
+                --precision 32 \
+                --workers 8 \
+                --model_name neuroverse3D \
+                --nb_inner_channels 32 64 128 256 512 \
+                --lr 0.00001 \
+                --lr_decline_patience 100 \
+                --data_dir /path/to/your/dataset/ \
+                --skip_resize True \
+                --context_size 3
+
+# Stage 2: Fine-tuning with a random context size, loading the checkpoint from Stage 1
+python train.py --train_gpus '(0)' \
+                --checkpoint_path ./lightning_logs/version_0/checkpoints \
+                --checkpoint_index -1 \
+                --precision 32 \
+                --workers 8 \
+                --model_name neuroverse3D \
+                --nb_inner_channels 32 64 128 256 512 \
+                --lr 0.000002 \
+                --lr_decline_patience 100 \
+                --data_dir /path/to/your/dataset/ \
+                --skip_resize True \
+                --random_context_size True \
+                --max_epochs 100
+```
+3. Inference
+
+To run inference with the pre-trained model, first download the necessary files.
+
+**a) Download Checkpoint and Demo Images:**
+
+   * **Pretrained Checkpoint:** Download the Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [Google Drive](https://drive.google.com/file/d/1ER_mV2CCsdnF-q3Aoy7loJ2DZXI95M9M/view?usp=drive_link) and place it in the `./checkpoint/` directory.
+   * **Demo Images:** Download the demo images from [Google Drive](https://drive.google.com/file/d/1H7sq-KeK39OfILdoY7MALO6sQqrgaVwf/view?usp=drive_link) and place them in the `./Demo_data/` directory.
+
+**b) Run the Model:**
 
    
-   - **Run Model with Inference.py:**    
+   * **Run Model with Inference.py:**    
        This `Inference.py` script allows you to directly run Neuroverse3D on a given 3D medical imaging path.  
        By default, this script assumes your data is organized in a format similar to [nnUNet](https://github.com/MIC-DKFZ/nnUNet),  
        i.e., structured as follows:
@@ -106,8 +118,8 @@ Follow the steps below to explore the model.
                     --target_output_path Demo_data/mod_trans/preds \   # Folder to save predictions
                     --task Gen                                         # Task type
         ```
-   - **Jupyter Notebook:** The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's capabilities. 
-   - **Direct Model Execution:**   
+   * **Jupyter Notebook:** The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's capabilities. 
+   * **Direct Model Execution:**   
        Alternatively, you can run the model directly using the following Python code:  
        Ensure all input images are min-max normalized to [0, 1].
 
@@ -130,7 +142,7 @@ Follow the steps below to explore the model.
 
 ## Citation
 
-If you find Neuroverse3D useful, please cite our paper **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**.
+If you find Neuroverse3D model useful, please cite **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**. If find Synthetic Data useful, please cite **SynthICL**.
 
 ## Acknowledgements
 This repository benefits from the excellent work provided by [UniverSeg](https://github.com/JJGO/UniverSeg/tree/main) and [Neuralizer](https://github.com/SteffenCzolbe/neuralizer). We extend our gratitude for their significant contributions to the field.
