@@ -1,7 +1,9 @@
 # In-Context Learning (ICL) for 3D Medical Imaging
 [![Paper](https://img.shields.io/badge/arxiv-2503.02410-b31b1b.svg)](https://arxiv.org/pdf/2503.02410v1)
+[![ICCV 2025](https://img.shields.io/badge/ICCV-2025-blue.svg)](https://arxiv.org/pdf/2503.02410v1)
 
-This repository aims to advance the development of universal, In-Context Learning (ICL) based models for 3D medical imaging. The core of this project is **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**, a versatile model capable of performing a wide range of tasks such as segmentation, denoising, and image transformation without task-specific retraining.
+
+This repository aims to advance the development of universal, In-Context Learning (ICL) based models for 3D medical imaging. It hosts the official implementation of **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**, a versatile model for tasks like segmentation and image transformation without retraining, and **[SynthICL](https://arxiv.org/abs/2509.19711)**, our method for generating synthetic datasets to enable training powerful ICL models from scratch.
 
 For a brief overview of the model's capabilities, please see the [introduction](neuroverse3D/intro.md).
 
@@ -142,7 +144,17 @@ To run inference with the pre-trained model, first download the necessary files.
 
 ## Citation
 
-If you find Neuroverse3D model useful, please cite **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**. If find Synthetic Data useful, please cite **SynthICL**.
+If you find **Neuroverse3D** model useful, please cite:
+```
+@article{hu2025building,
+  title={Building 3D In-Context Learning Universal Model in Neuroimaging},
+  author={Hu, Jiesi and Peng, Hanyang and Yang, Yanwu and Guo, Xutao and Shang, Yang and Shi, Pengcheng and Ye, Chenfei and Ma, Ting},
+  journal={arXiv preprint arXiv:2503.02410},
+  year={2025}
+}
+```
+
+If find Synthetic Data useful, please cite **[SynthICL](https://arxiv.org/abs/2509.19711)**.
 
 ## Acknowledgements
 This repository benefits from the excellent work provided by [UniverSeg](https://github.com/JJGO/UniverSeg/tree/main) and [Neuralizer](https://github.com/SteffenCzolbe/neuralizer). We extend our gratitude for their significant contributions to the field.

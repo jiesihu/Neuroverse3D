@@ -40,7 +40,6 @@ class MetaDataset_Multi(Dataset):
                  train_or_val = 'train', 
                  train_or_val_split_rate = 0.1,
                  data_split_seed = 0,
-                 DDPM=False,
                 ):
         """
         Load dataset of nnUNet format.
@@ -67,9 +66,6 @@ class MetaDataset_Multi(Dataset):
         self.train_or_val = train_or_val
         self.train_or_val_split_rate = train_or_val_split_rate
         self.data_split_seed = data_split_seed
-        
-        self.DDPM = DDPM
-        if self.DDPM: print("Load data in DDPM's scale. "*3)
         
         for i in data_loading_config:
             data_samples_tmp = self.loaddata_from_config(dataset_dir,i)
@@ -392,7 +388,6 @@ class MetaDataset_Multi_Extended(MetaDataset_Multi):
                  train_or_val_split_rate=0.1,
                  data_split_seed=0,
                  group_size=3,
-                 DDPM = False,
                  skip_resize = False,
                  cut_length = False,
                  random_context_size = False,
@@ -417,8 +412,7 @@ class MetaDataset_Multi_Extended(MetaDataset_Multi):
                          resize_image, 
                          train_or_val, 
                          train_or_val_split_rate, 
-                         data_split_seed,
-                        DDPM)
+                         data_split_seed,)
         
         self.group_size = group_size
         

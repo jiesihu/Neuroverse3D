@@ -96,7 +96,6 @@ dataset_train = MetaDataset_Multi_Extended(
         data_loading_config = data_loading_config,
         group_size = args.context_size+1,
         transform = transform,
-        DDPM = '_DDPM' in args.model_name,
         random_context_size = args.random_context_size
         )
 
@@ -105,8 +104,7 @@ dataset_val = MetaDataset_Multi_Extended(
         skip_resize = args.skip_resize,
         data_loading_config = data_loading_config,
         train_or_val = 'val',
-        group_size = args.context_size+1,
-        DDPM = '_DDPM' in args.model_name,)
+        group_size = args.context_size+1,)
 
 batchsize = args.batch_size
 
