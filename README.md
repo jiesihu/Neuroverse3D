@@ -29,6 +29,7 @@ If you wish to train the model from scratch, follow the steps below. To use our 
 
 First, download the provided synthetic dataset:
 **Link**: [Baidu Netdisk](https://pan.baidu.com/s/1GNowsAfZE2vVIo1tW4O6vQ) (Access Code: `rue4`)  
+**You can easily add new datasets for training by following our dataset naming convention (consistent with nnUNet) and modifying `train.py`.**  
 *Note: This dataset is currently hosted on Baidu Netdisk. We are exploring alternative hosting options for easier access.*
 
 Then, run the two-stage training process:
