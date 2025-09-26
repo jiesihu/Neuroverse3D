@@ -1,7 +1,6 @@
 # In-Context Learning (ICL) for 3D Medical Imaging
-[![Paper](https://img.shields.io/badge/arxiv-2503.02410-b31b1b.svg)](https://arxiv.org/pdf/2503.02410v1)
 [![ICCV 2025](https://img.shields.io/badge/ICCV-2025-blue.svg)](https://arxiv.org/pdf/2503.02410v1)
-
+[![Paper](https://img.shields.io/badge/arxiv-2503.02410-b31b1b.svg)](https://arxiv.org/abs/2509.19711)
 
 This repository aims to advance the development of universal, In-Context Learning (ICL) based models for 3D medical imaging. It hosts the official implementation of **[Neuroverse3D](https://arxiv.org/pdf/2503.02410v1)**, a versatile model for tasks like segmentation and image transformation without retraining, and **[SynthICL](https://arxiv.org/abs/2509.19711)**, our method for generating synthetic datasets to enable training powerful ICL models from scratch.
 
