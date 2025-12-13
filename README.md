@@ -10,7 +10,7 @@ This repository aims to advance the development of universal, In-Context Learnin
 
 * **Memory-Efficient ICL Model:** An ICL model specifically designed for 3D medical imaging that supports large context sizes without linear growth in memory consumption.
 * **Pre-trained Checkpoint & Demo:** Includes a pre-trained checkpoint for Neuroverse3D on neuroimaging data and a hands-on Jupyter Notebook (`Demo.ipynb`) to showcase its capabilities.
-* **Complete Training Pipeline:** Provides the full source code for training the ICL segmentation model, along with a synthetic dataset generated via SynthICL, enabling researcher to train a capable 3D medical ICL model from scratch.
+* **Training Pipeline:** Provides the full source code for training the ICL segmentation model, along with a synthetic dataset generated via SynthICL, enabling researcher to train a capable 3D medical ICL model from scratch.
 
 
 ## Getting Started
