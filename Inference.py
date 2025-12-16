@@ -44,7 +44,7 @@ class VolumeResizer:
         resized = F.interpolate(volume, size=self.ROI, mode='nearest')
         return resized
 
-    def recover(self, volume: torch.Tensor) -> torch.Tensor:
+    def recover(self, volume: torch.Tensor, mode = 'nearest') -> torch.Tensor:
         """
         Recover a resized volume back to original size using trilinear interpolation.
         :param volume: torch.Tensor of shape self.ROI
@@ -58,7 +58,10 @@ class VolumeResizer:
         
         # Reshape to (1,1,H,W,D) for interpolation
         volume = volume
-        recovered = F.interpolate(volume, size=self.original_size, mode='trilinear', align_corners=True)
+        if mode == 'nearest':
+            recovered = F.interpolate(volume, size=self.original_size, mode=mode)
+        else:
+            recovered = F.interpolate(volume, size=self.original_size, mode=mode, align_corners=True)
         return recovered
 
     
@@ -203,7 +206,7 @@ def run_model_according_to_task(model, img_input, context_in, context_out, task,
             context_in = normalize_3d_volume(context_in)
             context_out = normalize_3d_volume(context_out)
 
-            # 推理
+            # Inference
             with torch.no_grad():
                 model.eval()
                 mask = model.forward(img_input, context_in, context_out, gs = group_size)
@@ -304,14 +307,14 @@ context_out = context_set_labs[None, :]
 target_imgs_list = read_context(target_imgs, target_modality, None)
 
 for target_path in target_imgs_list:
-    # 读取图像
+    # Read Image
     nii = nib.load(target_path)
     data = nii.get_fdata()  # shape: (W, H, D)
 
     if data.ndim != 3:
         raise ValueError(f"Input NIfTI must be 3D. Got shape: {data.shape}")
 
-    # 转换为 (1, 1, W, H, D)
+    # To (1, 1, W, H, D)
     img_input = torch.from_numpy(data).unsqueeze(0).unsqueeze(0).float()  # torch.Tensor
 
     # Resize
@@ -325,19 +328,15 @@ for target_path in target_imgs_list:
                                        group_size = group_size
                                       )
     # Resize back
-    img_input = volumeresizer.recover(img_input)
+    mask = volumeresizer.recover(mask, mode = 'nearest')
 
-    # 后处理：移除 batch 和 channel，转换为 numpy
     mask_np = mask.squeeze(0).squeeze(0).cpu().numpy()
-
-    # 保持原始 affine 和 header
+    
     mask_nii = nib.Nifti1Image(mask_np, affine=nii.affine, header=nii.header)
 
-    # 构建输出路径
     output_path = target_path.replace(target_imgs, target_output_path)
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-    # 保存预测掩码
     nib.save(mask_nii, output_path)
 
 
