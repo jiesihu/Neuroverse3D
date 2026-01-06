@@ -1,0 +1,36 @@
+[project]
+name = "med-ai-research"
+version = "0.1.0"
+description = "Environment for Medical AI Research (Neuroverse3D/Medverse context)"
+requires-python = ">=3.9, <3.11"
+dependencies = [
+    "nibabel==3.2.2",
+    "numpy==1.22.3",
+    "pydantic==1.9.1",
+    "pytorch-lightning",
+    "torch==2.0.1+cu117",
+    "torchvision==0.15.2+cu117",
+    "ipykernel",
+    "einops==0.4.1",
+    "kornia==0.6.5",
+    "tabulate==0.8.9",
+    "monai==1.1.0",
+    "pandas",
+    "scikit-image==0.19.2",
+    "opencv-contrib-python",
+    "matplotlib",
+    "scipy",
+    "pytorch_msssim",
+    "notebook",
+    "jupyterlab>=4.3",
+]
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu117"
+explicit = false 
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
