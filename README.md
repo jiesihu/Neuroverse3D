@@ -19,7 +19,7 @@ Follow the steps below to explore the model.
 
 ### 1. **Environment Setup:**
 
-We offer three ways to set up the environment. **We strongly recommend using `uv`** for the fastest and most reliable dependency management.
+We offer three ways to set up the environment. **We recommend using `uv`** for the fastest dependency management.
 
 * **Option 1: Using uv (Recommended)**
     This project uses `pyproject.toml` for dependency management. You can set up the environment instantly using [uv](https://github.com/astral-sh/uv):
@@ -41,7 +41,7 @@ We offer three ways to set up the environment. **We strongly recommend using `uv
     ```
 
 * **Option 3: Using Docker**
-    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which contains all necessary runtime environments.
+    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which contains all necessary environments.
 
   
 ### 2. **Training (Optional)**
@@ -92,6 +92,7 @@ To run inference with the pre-trained model, first download the necessary files.
 
    * **Pretrained Checkpoint:** Download the Neuroverse3D checkpoint (`neuroverse3D.ckpt`) from [Google Drive](https://drive.google.com/file/d/1ER_mV2CCsdnF-q3Aoy7loJ2DZXI95M9M/view?usp=drive_link) and place it in the `./checkpoint/` directory.
    * **Demo Images:** Download the demo images from [Google Drive](https://drive.google.com/file/d/1H7sq-KeK39OfILdoY7MALO6sQqrgaVwf/view?usp=drive_link) and place them in the `./Demo_data/` directory.
+   * **Jupyter Notebook:** The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's capabilities. 
 
 **b) Run the Model:**
 
@@ -143,9 +144,8 @@ To run inference with the pre-trained model, first download the necessary files.
                     --target_output_path Demo_data/mod_trans/preds \   # Folder to save predictions
                     --task Gen                                         # Task type
         ```
-   * **Jupyter Notebook:** The `Demo.ipynb` notebook provides hands-on demonstrations of Neuroverse3D's capabilities. 
    * **Direct Model Execution:**   
-       Alternatively, you can run the model directly using the following Python code:  
+       You can run the model directly using the following Python code:  
        Ensure all input images are min-max normalized to [0, 1].
 
         ```python
@@ -169,15 +169,24 @@ To run inference with the pre-trained model, first download the necessary files.
 
 If you find **Neuroverse3D** model useful, please cite:
 ```
-@article{hu2025building,
-  title={Building 3D In-Context Learning Universal Model in Neuroimaging},
+@inproceedings{hu2025neuroverse3d,
+  title={Neuroverse3D: Developing In-Context Learning Universal Model for Neuroimaging in 3D},
   author={Hu, Jiesi and Peng, Hanyang and Yang, Yanwu and Guo, Xutao and Shang, Yang and Shi, Pengcheng and Ye, Chenfei and Ma, Ting},
-  journal={arXiv preprint arXiv:2503.02410},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={21721--21731},
   year={2025}
 }
 ```
 
-If find Synthetic Data useful, please cite **[SynthICL](https://arxiv.org/abs/2509.19711)**.
+If find Synthetic Data useful, please cite:
+```
+@article{hu2025towards,
+  title={Towards robust in-context learning for medical image segmentation via data synthesis},
+  author={Hu, Jiesi and Yang, Yanwu and Ye, Zhiyu and Ye, Chenfei and Peng, Hanyang and Cao, Jianfeng and Ma, Ting},
+  journal={arXiv preprint arXiv:2509.19711},
+  year={2025}
+}
+```
 
 ## Acknowledgements
 This repository benefits from the excellent work provided by [UniverSeg](https://github.com/JJGO/UniverSeg/tree/main) and [Neuralizer](https://github.com/SteffenCzolbe/neuralizer). We extend our gratitude for their significant contributions to the field.
