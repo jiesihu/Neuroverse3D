@@ -68,14 +68,14 @@ class VolumeResizer:
 
 
 def read_context(context_imgs, context_imgs_modality='0000', context_labs=None, context_labs_modality = None, context_size_upper_bound = 8):
-    # 仅保留 .nii 和 .nii.gz 文件
+    # Keep only .nii and .nii.gz files
     def get_nii_files(path):
         return sorted([
             f for f in os.listdir(path)
             if f.endswith('.nii') or f.endswith('.nii.gz')
         ])
 
-    # 获取图像文件，筛选包含指定模态的文件
+    # Get image files and filter those containing a specified modality
     img_files = get_nii_files(context_imgs)
     img_files = [f for f in img_files if context_imgs_modality + '.' in f]
 
@@ -84,17 +84,17 @@ def read_context(context_imgs, context_imgs_modality='0000', context_labs=None, 
         
         
 
-        # 校验文件数量一致
+        # Verify that the number of files is consistent
         if len(img_files) != len(lab_files):
             raise ValueError(f"Number of images ({len(img_files)}) and labels ({len(lab_files)}) do not match")
 
-        # 检查图像文件名经过模态名替换后是否和标签文件一致
+        # Check if the image filename matches the label file after modal name replacement.
         expected_lab_files = [f.replace('_'+context_imgs_modality + '.', '.') for f in img_files]
         
         if sorted(expected_lab_files) != sorted(lab_files):
             raise ValueError("Image and label filenames do not match after removing modality identifier.")
 
-        # 返回排序后的完整路径
+        # Return the sorted full path
         img_paths = sorted([os.path.join(context_imgs, f) for f in img_files])
         lab_paths = sorted([os.path.join(context_labs, f) for f in expected_lab_files])
         
@@ -109,17 +109,17 @@ def read_context(context_imgs, context_imgs_modality='0000', context_labs=None, 
         lab_files = [f for f in lab_files if context_labs_modality + '.' in f]
         
         
-        # 校验文件数量一致
+        # Verify that the number of files is consistent
         if len(img_files) != len(lab_files):
             raise ValueError(f"Number of images ({len(img_files)}) and labels ({len(lab_files)}) do not match")
 
-        # 检查图像文件名经过模态名替换后是否和标签文件一致
+        # Check if the image filename matches the label file after modal name replacement.
         expected_lab_files = [f.replace('_'+context_imgs_modality + '.', '_'+context_labs_modality+'.') for f in img_files]
         
         if sorted(expected_lab_files) != sorted(lab_files):
             raise ValueError("Image and label filenames do not match after removing modality identifier.")
 
-        # 返回排序后的完整路径
+        # Return the sorted full path
         img_paths = sorted([os.path.join(context_imgs, f) for f in img_files])
         lab_paths = sorted([os.path.join(context_labs, f) for f in expected_lab_files])
         
@@ -130,7 +130,7 @@ def read_context(context_imgs, context_imgs_modality='0000', context_labs=None, 
         return img_paths, lab_paths
     
     else:
-        # 仅返回图像路径
+        # Return only image path
         img_paths = sorted([os.path.join(context_imgs, f) for f in img_files])
         return img_paths
 
@@ -146,7 +146,7 @@ def load_nii_list_to_tensor(file_list):
     volumes = []
     for path in file_list:
         img = nib.load(path)
-        data = img.get_fdata()  # 返回 float64 的 numpy array，shape: (W, H, D)
+        data = img.get_fdata()  # get float64 的 numpy array，shape: (W, H, D)
         
         if data.ndim != 3:
             raise ValueError(f"Volume at {path} is not 3D, got shape {data.shape}")

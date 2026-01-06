@@ -17,20 +17,43 @@ This repository aims to advance the development of universal, In-Context Learnin
 
 Follow the steps below to explore the model.
 
-1. **Environment Setup:** Ensure you have Python and PyTorch installed, along with the required libraries listed in `requirements.txt`. You can install dependencies using pip:
+### 1. **Environment Setup:**
+
+We offer three ways to set up the environment. **We strongly recommend using `uv`** for the fastest and most reliable dependency management.
+
+* **Option 1: Using uv (Recommended)**
+    This project uses `pyproject.toml` for dependency management. You can set up the environment instantly using [uv](https://github.com/astral-sh/uv):
+    ```bash
+    # Install uv
+    pip install uv
+    
+    # Sync dependencies (creates a virtual environment and installs packages)
+    uv sync
+    
+    # Activate the environment
+    source .venv/bin/activate
+    ```
+
+* **Option 2: Using pip**
+    Ensure you have Python and PyTorch installed. You can install the dependencies listed in `requirements.txt`:
     ```bash
     pip install -r requirements.txt
     ```
-    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which has all the necessary runtime environments.
 
+* **Option 3: Using Docker**
+    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which contains all necessary runtime environments.
+
+  
 ### 2. **Training (Optional)**
 
 If you wish to train the model from scratch, follow the steps below. To use our pre-trained model, you can skip to the next section.
 
-First, download the provided synthetic dataset:
-**Link**: [Baidu Netdisk](https://pan.baidu.com/s/1GNowsAfZE2vVIo1tW4O6vQ) (Access Code: `rue4`)  
-**You can easily add new datasets for training by following our dataset naming convention (consistent with nnUNet) and modifying `train.py`.**  
-*Note: This dataset is currently hosted on Baidu Netdisk. We are exploring alternative hosting options for easier access.*
+First, download the provided synthetic dataset. We provide two download options:
+
+* **Google Drive:** [Download Link](https://drive.google.com/drive/folders/1Aql8KKYKBlMPvK2kfI6GdmFzXI9gQFGV?usp=sharing)
+* **Baidu Netdisk:** [Download Link](https://pan.baidu.com/s/1GNowsAfZE2vVIo1tW4O6vQ) (Access Code: `rue4`)
+
+**You can easily add new datasets for training by following our dataset naming convention (consistent with nnUNet) and modifying `train.py`.**
 
 Then, run the two-stage training process:
 ```bash

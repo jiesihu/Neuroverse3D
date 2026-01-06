@@ -127,7 +127,7 @@ class MetaDataset_Multi(Dataset):
         label,_ =  self.pad_image(label, padding_config = padding_config)
         
         '''
-        resize的时候第三个维度不变
+        The third dimension remains unchanged during resizing.
         '''
         # resize
         image = self.resize_image_func(image, new_A=self.resize_image,order = 3)
@@ -162,20 +162,20 @@ class MetaDataset_Multi(Dataset):
         tasks = sample.get('task')
         task_configs = sample.get('task_config')
 
-        # 如果任务不是列表，则转换为单元素列表
+        # If the task is not a list, convert it to a single-element list.
         if not isinstance(tasks, list):
             tasks = [tasks]
             task_configs = [task_configs]
  
         else:
-            # 确保 task_configs 是列表
+            # Ensure task_configs is a list
             if not isinstance(task_configs, list):
-                raise ValueError("当 'task' 是列表时，'task_config' 也必须是列表。")
+                raise ValueError("When 'task' is a list, 'task_config' must also be a list.")
 
             if len(tasks) != len(task_configs):
-                raise ValueError("任务列表的长度必须与任务配置列表的长度一致。")
+                raise ValueError("The length of the task list must be the same as the length of the task configuration list.")
 
-        return image, label  # 确保返回修改后的 image 和 label
+        return image, label  # Ensure the modified image and label are returned.
     
     
     def load_data(self,sample, key):
@@ -220,15 +220,15 @@ class MetaDataset_Multi(Dataset):
     
     # Data preprocessing
     def clip_percentiles(self, img):
-        # 计算5%和95%的percentile
+        # Calculate the 5% and 95% percentiles
         p5 = np.percentile(img, 0.5)
         p95 = np.percentile(img, 99.5)
 
-        # 使用clip函数将图像数值限制在这两个percentile之间
+        # Use the clip function to limit image values ​​to between these two percentiles
         img_clipped = np.clip(img, p5, p95)
         return img_clipped
 
-    # 使用Z-Score归一化
+    # Z-Score norm
     def z_score_normalization(self, img):
         mean = np.mean(img)
         std = np.std(img)
@@ -237,12 +237,12 @@ class MetaDataset_Multi(Dataset):
         return img_normalized
     
     def crop_image(self, image, crop_coords = None):
-        """根据给定的阈值裁剪3D图像，移除周围的黑色背景区域。"""
+        """Cropping a 3D image based on a given threshold removes the surrounding black background area."""
         
         if crop_coords is None:
             threshold= np.percentile(image, 35)
             
-            # 找到每个维度上非背景的索引
+            # Find the non-background index in each dimension
             coords = np.array(np.nonzero((image > threshold).astype('int')))
             x_min, x_max = coords[0].min(), coords[0].max()
             y_min, y_max = coords[1].min(), coords[1].max()
@@ -253,7 +253,7 @@ class MetaDataset_Multi(Dataset):
             y_min, y_max = crop_coords['y_min'],crop_coords['y_max']
             z_min, z_max = crop_coords['z_min'],crop_coords['z_max']
 
-        # 裁剪图像
+        # Crop Image
         cropped_image = image[x_min:x_max+1, y_min:y_max+1, z_min:z_max+1]
         return cropped_image, crop_coords
     
@@ -288,19 +288,19 @@ class MetaDataset_Multi(Dataset):
     
     def resize_image_func(self, image, new_A=128,order = 3,nii_scale = [1,1,1], return_factor = False):
         '''
-        等比例缩放三个维度
+        Scaling three dimensions proportionally
         '''
-        # 获取原始尺寸
+        # Get original shape
         A, _, C = image.shape
 
-        # 计算缩放因子
+        # Calculate scaling factor
         scale_A = new_A / A
-        scale_C = scale_A  # 因为我们希望C维也按比例缩放
+        scale_C = scale_A  # Because we want the C-dimensional dimensions to be scaled proportionally as well.
 
-        # 使用scipy.ndimage.zoom来缩放图像
-#         resized_image = scipy.ndimage.zoom(image, (scale_A, scale_A, scale_C), order=order)  # order=3表示三次样条插值
-        resized_image = scipy.ndimage.zoom(image, (scale_A, scale_A, 1), order=order)  # order=3表示三次样条插值
-        resized_image = scipy.ndimage.zoom(resized_image, (1, 1, scale_C), order=0)  # order=3表示三次样条插值
+        # use scipy.ndimage.zoom for zooming
+#         resized_image = scipy.ndimage.zoom(image, (scale_A, scale_A, scale_C), order=order)  
+        resized_image = scipy.ndimage.zoom(image, (scale_A, scale_A, 1), order=order)  # order=3 indicates cubic spline interpolation
+        resized_image = scipy.ndimage.zoom(resized_image, (1, 1, scale_C), order=0)  
 
         return resized_image
     
@@ -324,25 +324,25 @@ class MetaDataset_Multi(Dataset):
         min_value = image.min()
 
         if current_depth < target_depth:
-            # 计算需要填充的层数
+            # Calculate the number of layers that need to be filled
             pad_size = (target_depth - current_depth) // 2
-            # 创建上下填充，如果是奇数，上方多填充一层
+            # Create top and bottom padding; if the number is odd, add an extra layer of padding on top.
             pad_before = pad_size + (target_depth - current_depth) % 2
             pad_after = pad_size
 
-            # 使用np.pad进行填充
+            # Use np.pad to fill
             padding = ((0, 0), (0, 0), (pad_before, pad_after))
             padded_image = np.pad(image, padding, mode='constant', constant_values=min_value)
             return padded_image
         elif current_depth > target_depth:
-            # 计算需要裁剪的起始和结束索引
+            # Calculate the start and end indices of the cropping area
             start = (current_depth - target_depth) // 2
             end = start + target_depth
-            # 裁剪影像
+            # Silhouette Portrait
             cropped_image = image[:, :, start:end]
             return cropped_image
         else:
-            # 如果已经是128，则直接返回原图
+            # If it's already 128, then return to the original image.
             return image
         
     def set_foreground_background(self, mask, foreground_classes=None):
@@ -744,10 +744,10 @@ class MetaDatasetf_transform_1channel(object):
 
     
     def sobel_edge_detection_3d(self, image):
-        # 初始化梯度数组
+        # Initialize gradient array
         sobel_edges = np.zeros_like(image)
 
-        # 对每个方向应用Sobel滤波器
+        # Apply a Sobel filter in each direction
         for axis in range(3):
             sobel_edges += np.abs(sobel(image, axis=axis))/3
 
@@ -880,7 +880,7 @@ from monai.transforms import MapTransform, InvertibleTransform, LazyTransform
 
 class RandomResample(MapTransform, InvertibleTransform, LazyTransform):
     """
-    随机在 3D 体数据 (B, H, W, D) 的某一个空间维上做下采样 / 还原的可逆字典式变换。
+    A reversible dictionary-like transformation is performed on a random spatial dimension of the 3D volume data (B, H, W, D) by downsampling/restoring.
     """
 
     backend = ["numpy", "torch"]
@@ -981,7 +981,7 @@ class RandomResample(MapTransform, InvertibleTransform, LazyTransform):
     # ------------------- inverse ------------------- #
     def inverse(self, data):
         raise NotImplementedError(
-            "如需可逆操作，请在 __call__ 缓存 axis/factor/use_padding 后在此处实现。"
+            "For reversible operations, implement them here after caching axis/factor/use_padding in __call__."
         )
 
 
