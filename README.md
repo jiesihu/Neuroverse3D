@@ -41,7 +41,7 @@ We offer three ways to set up the environment. **We recommend using `uv`** for t
     ```
 
 * **Option 3: Using Docker**
-    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1bAoCM2JzfS0cZCQOZFIVGWLnQBDA73V3/view?usp=share_link), which contains all necessary environments.
+    Alternatively, you can directly download and use our provided [Docker image](https://drive.google.com/file/d/1YuG8xlVCeLsUM0KGLbp8Xe_rBYYLfYtF/view?usp=sharing), which contains all necessary environments.
 
   
 ### 2. **Training (Optional)**
@@ -50,7 +50,7 @@ If you wish to train the model from scratch, follow the steps below. To use our 
 
 First, download the provided synthetic dataset. We provide two download options:
 
-* **Google Drive:** [Download Link](https://drive.google.com/drive/folders/1Aql8KKYKBlMPvK2kfI6GdmFzXI9gQFGV?usp=sharing)
+* **Google Drive:** [Download Link](https://drive.google.com/drive/folders/1TRLx_JRoHZdo81kJt9rAL3oQ6WoIvl-c?usp=sharing)
 * **Baidu Netdisk:** [Download Link](https://pan.baidu.com/s/1GNowsAfZE2vVIo1tW4O6vQ) (Access Code: `rue4`)
 
 **You can easily add new datasets for training by following our dataset naming convention (consistent with nnUNet) and modifying `train.py`.**
